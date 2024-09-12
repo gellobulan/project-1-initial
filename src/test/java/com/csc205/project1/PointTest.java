@@ -7,85 +7,67 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PointTest {
 
+
     @Test
-    void setPoint() {
-
-        // Setup
-        double expectedX = 5;
-        double expectedY = 5;
-        Point point = new Point(expectedX, expectedY);
-
-        // Exercise
-        double x = point.getX();
-        double y = point.getY();
-
-        // Assert
-        assertEquals(expectedX, x);
-        assertEquals(expectedY, y);
+    void testConstructorAndGetters() {
+        Point p = new Point(3.0, 4.0);
+        assertEquals(3.0, p.getX());
+        assertEquals(4.0, p.getY());
     }
 
     @Test
-    void shiftX() {
-
-        // Setup
-        double expectedX = 6;
-        Point point = new Point(5, 5);
-
-        // Exercise
-        point.shiftX(1);
-        double x = point.getX();
-
-        // Assert
-        assertEquals(expectedX, x);
-
+    void testSetters() {
+        Point p = new Point(0.0, 0.0);
+        p.setX(5.0);
+        p.setY(6.0);
+        assertEquals(5.0, p.getX());
+        assertEquals(6.0, p.getY());
     }
 
     @Test
-    void shiftY() {
-
-        // Setup
-        double expectedY = 6;
-        Point point = new Point(5, 5);
-
-        // Exercise
-        point.shiftY(1);
-        double y = point.getY();
-
-        // Assert
-        assertEquals(expectedY, y);
+    void testSetPoint() {
+        Point p = new Point(0.0, 0.0);
+        p.setPoint(7.0, 8.0);
+        assertEquals(7.0, p.getX());
+        assertEquals(8.0, p.getY());
     }
 
     @Test
-    void distance() {
-
-        // Setup
-        double expectedDistance = 5;
-        Point point1 = new Point(0, 0);
-        Point point2 = new Point(3,4);
-
-        // Exercise
-
-        double distance = point1.distance(point2);
-
-        // Assert
-        assertEquals(expectedDistance, distance);
+    void testShiftX() {
+        Point p = new Point(1.0, 1.0);
+        p.shiftX(2.0);
+        assertEquals(3.0, p.getX());
     }
 
     @Test
-    void rotate() {
+    void testShiftY() {
+        Point p = new Point(1.0, 1.0);
+        p.shiftY(2.0);
+        assertEquals(3.0, p.getY());
+    }
 
-        // Setup
-        double expectedX = -5;
-        double expectedY = 5;
-        Point point = new Point(5, 5);
+    @Test
+    void testDistance() {
+        Point p1 = new Point(0.0, 0.0);
+        Point p2 = new Point(3.0, 4.0);
+        assertEquals(5.0, p1.distance(p2));
+    }
 
-        // Exercise
-        point.rotate(Math.PI / 2.0);
-        double x = point.getX();
-        double y = point.getY();
+    @Test
+    void testRotate() {
+        Point p = new Point(1.0, 0.0);
+        p.rotate(Math.PI / 2); // 90 degrees
+        assertEquals(0.0, p.getX(), 1e-10);
+        assertEquals(1.0, p.getY(), 1e-10);
+    }
 
-        // Assert
-        assertEquals(expectedX, x);
-        assertEquals(expectedY, y);
+    @Test
+    void testToString() {
+        Point p = new Point(1.0, 2.0);
+        assertEquals("Point(x=1.0, y=2.0)", p.toString());
     }
 }
+
+
+
+
